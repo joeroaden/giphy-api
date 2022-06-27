@@ -10,12 +10,12 @@ $(document).ready(function() {
     $('#gif').val("");
 
     let request = new XMLHttpRequest();
-    const url = `http://api.giphy.com/v1/gifs/search?api_key${process.env.API_KEY}`;
+    const url = `http://api.giphy.com/v1/gifs/search?api_key=${process.env.API_KEY}&q=${gif}`;
 
     request.onreadystatechange = function() {
       if (this.readyState === 4 && this.status === 200) {
-        const response1 = JSON.parse(this.responseText);
-        getElements(response1);
+        const response = JSON.parse(this.responseText);
+        getElements(response);
       }
     };
 
@@ -23,7 +23,7 @@ $(document).ready(function() {
     request.send();
 
     function getElements(response) {
-      $('.showGifSearch').text(`Results: ${gif}`);
+      $('.showGifSearch').text(`Results: ${response}`);
     }
   });
 });

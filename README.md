@@ -2,7 +2,7 @@
 
 #### (Brief Description of Application)
 
-#### By Sandra Tena
+#### By Sandra Tena & Joe Roaden
 
 ## Technologies Used
 
