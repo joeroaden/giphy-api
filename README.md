@@ -15,9 +15,15 @@
 
 ## Setup/Installation Requirements
 
-* clone this repository using git clone https://github.com/SandraT22/template-repo.git.
-* run npm install
-* update the title of the project located on line 18 of webpack.config.js
+* Clone this repository to your desktop.
+* Create your own local .env file.
+* Add youe .env file to your .gitignore file.
+* Navigate to giphy.com, create an account, create an app and that will generate your own API.
+* Add your API key variable to your .env file.
+* Run $ npm install.
+* Navigate to the top level of the directory.
+* Open index.html in your browser.
+
 
 ## Known Bugs
 
