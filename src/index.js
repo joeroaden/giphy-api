@@ -2,29 +2,15 @@ import $ from 'jquery';
 import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './css/styles.css';
-
+import GiphyService from './giphy-service.js';
 
 $(document).ready(function() {
   $('#gifSearch').click(function() {
-    const gif = $('#gif').val();
-    $('#gif').val();
-
-    let request = new XMLHttpRequest();
-    const url = `https://api.giphy.com/v1/gifs/search?api_key=${process.env.API_KEY}&q=${gif}&limit=20`;
-    console.log(url);
-    request.onreadystatechange = function() {
-      if (this.readyState === 4 && this.status === 200) {
-        const response = JSON.parse(this.responseText);
-        getElements(response);
-      }
-    };
-
-    request.open("GET", url, true);
-    request.send();
-
-    function getElements(response) {
-      $('.showGifSearch').html(`<img src="${response.data[0].images.downsized_medium.url}"/>`);
-      
-    }
+    let gif = $('#gif').val();
+    let promise = GiphyService.getGif(gif);
+    promise.then(function(response) {
+      const body = JSON.parse(response);
+      $('.showGifSearch').html(`<img src="${body.data[1].images.downsized_medium.url}"/>`);
+    });
   });
 });
