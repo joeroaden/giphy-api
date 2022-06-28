@@ -7,11 +7,11 @@ import './css/styles.css';
 $(document).ready(function() {
   $('#gifSearch').click(function() {
     const gif = $('#gif').val();
-    $('#gif').val("");
+    $('#gif').val();
 
     let request = new XMLHttpRequest();
-    const url = `http://api.giphy.com/v1/gifs/search?api_key=${process.env.API_KEY}&q=${gif}`;
-
+    const url = `https://api.giphy.com/v1/gifs/search?api_key=${process.env.API_KEY}&q=${gif}&limit=20`;
+    console.log(url);
     request.onreadystatechange = function() {
       if (this.readyState === 4 && this.status === 200) {
         const response = JSON.parse(this.responseText);
@@ -23,7 +23,8 @@ $(document).ready(function() {
     request.send();
 
     function getElements(response) {
-      $('.showGifSearch').text(`Results: ${response}`);
+      $('.showGifSearch').html(`<img src="${response.data[0].images.downsized_medium.url}"/>`);
+      
     }
   });
 });
